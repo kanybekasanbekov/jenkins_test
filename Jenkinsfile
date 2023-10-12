@@ -2,23 +2,19 @@ pipeline {
     agent any
 
     stages {
-        stage('Chec Path'){
-            steps {
-                sh 'pwd'
-                sh 'ls -la'
-            }
-        }
         stage('Run Python') {
             steps {
-                sh 'python my_python_script.py'
+                sh 'python main.py'
             }
         }
 
         stage('Build C++') {
             steps {
-                sh 'cmake .'
-                sh 'make'
-                sh './main'
+                dir('build'){
+                    sh 'cmake ..'
+                    sh 'make'
+                    sh './main'
+                }
             }
         }
     }

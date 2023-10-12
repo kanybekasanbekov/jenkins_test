@@ -1,7 +1,17 @@
 pipeline {
-    agent any
-
+    agent {
+        docker {
+            image 'mobilint/qbcompiler:latest'
+            args '-u root'
+        }
+    }
     stages {
+        stage('Confirm docker'){
+            steps {
+                sh 'pip show tvm'
+            }
+        }
+
         stage('Run Python') {
             steps {
                 sh 'python main.py'

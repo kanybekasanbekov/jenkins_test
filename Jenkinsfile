@@ -1,14 +1,20 @@
 pipeline {
     agent {
         docker {
-            image 'mobilint/qbcompiler:latest'
-            args '-u root'
+            // image 'mobilint/qbcompiler:latest'
+            image 'pytorch/pytorch:latest'
+            // args '-u root'
         }
     }
     stages {
         stage('Confirm docker'){
             steps {
-                sh 'pip show tvm'
+                sh 'pwd'
+                sh 'ls -al'
+                sh 'pip --version'
+                sh 'pip list'
+                // sh 'pip show tvm'
+                sh 'python --version'
             }
         }
 
